@@ -29,6 +29,7 @@ public class MsgReplyRule implements Serializable {
     @NotEmpty(message = "匹配关键词不得为空")
     private String matchValue;
     private boolean exactMatch;
+    private boolean globalRule;
     private String replyType;
     @NotEmpty(message = "回复内容不得为空")
     private String replyContent;

@@ -284,6 +284,7 @@ CREATE TABLE `wx_msg_reply_rule`  (
   `rule_name` varchar(20) CHARACTER SET utf8 NOT NULL COMMENT '规则名称',
   `match_value` varchar(200) CHARACTER SET utf8 NOT NULL COMMENT '匹配的关键词、事件等',
   `exact_match` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否精确匹配',
+  `global_rule` tinyint(1) NOT NULL DEFAULT 0 COMMENT '是否全局规则',
   `reply_type` varchar(20) CHARACTER SET utf8 NOT NULL DEFAULT '1' COMMENT '回复消息类型',
   `reply_content` varchar(1024) CHARACTER SET utf8 NOT NULL COMMENT '回复消息内容',
   `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '规则是否有效',
@@ -299,7 +300,7 @@ CREATE TABLE `wx_msg_reply_rule`  (
 -- ----------------------------
 -- Records of wx_msg_reply_rule
 -- ----------------------------
-INSERT INTO `wx_msg_reply_rule` VALUES (1, '', '关注公众号', 'subscribe', 0, 'text', '你好，欢迎关注！\n<a href=\"https://github.com/niefy\">点击链接查看我的主页</a>', 1, '关注回复', '00:00:00', '23:59:59', 0, '2020-05-20 15:15:00');
+# INSERT INTO `wx_msg_reply_rule` VALUES (1, '', '关注公众号', 'subscribe', 0, 'text', '你好，欢迎关注！\n<a href=\"https://github.com/niefy\">点击链接查看我的主页</a>', 1, '关注回复', '00:00:00', '23:59:59', 0, '2020-05-20 15:15:00');
 
 -- ----------------------------
 -- Table structure for wx_msg_template

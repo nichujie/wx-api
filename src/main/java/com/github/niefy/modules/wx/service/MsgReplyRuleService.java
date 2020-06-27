@@ -33,6 +33,13 @@ public interface MsgReplyRuleService extends IService<MsgReplyRule> {
     List<MsgReplyRule> getValidRules();
 
     /**
+     * 获取当前时段内所有有效的批量（全局）回复规则
+     *
+     * @return 有效的规则列表
+     */
+    List<MsgReplyRule> getValidGlobalRules();
+
+    /**
      * 筛选符合条件的回复规则
      *
      *
