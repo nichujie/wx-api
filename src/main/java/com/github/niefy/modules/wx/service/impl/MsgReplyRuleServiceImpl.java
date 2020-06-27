@@ -24,16 +24,16 @@ public class MsgReplyRuleServiceImpl extends ServiceImpl<MsgReplyRuleMapper, Msg
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
+        String ruleName = (String) params.get("ruleName");
         String matchValue = (String) params.get("matchValue");
         String appid = (String) params.get("appid");
         IPage<MsgReplyRule> page = this.page(
             new Query<MsgReplyRule>().getPage(params),
             new QueryWrapper<MsgReplyRule>()
-                    .eq(!StringUtils.isEmpty(appid), "appid", appid)
-                    .or()
-                    .apply("appid is null or appid = ''")
-                    .like(!StringUtils.isEmpty(matchValue), "match_value", matchValue)
-                    .orderByDesc("update_time")
+                .eq(!StringUtils.isEmpty(appid), "appid", appid)
+                .like(!StringUtils.isEmpty(ruleName), "rule_name", ruleName)
+                .like(!StringUtils.isEmpty(matchValue), "match_value", matchValue)
+                .orderByDesc("update_time")
         );
 
         return new PageUtils(page);
