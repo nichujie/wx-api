@@ -106,6 +106,15 @@ public class MsgReplyRuleServiceImpl extends ServiceImpl<MsgReplyRuleMapper, Msg
     @Override
     public List<MsgReplyRule> getMatchedRules(String appid, boolean exactMatch, String keywords) {
         LocalTime now = LocalTime.now();
+
+        if (keywords.equals("subscribe")) {
+            // TODO: 优化多公众号逻辑
+            return msgReplyRuleMapper.selectList(
+                new QueryWrapper<MsgReplyRule>()
+                    .eq("match_value", "subscribe")
+                    .orderByDesc("priority"));
+        }
+
         List<MsgReplyRule> matchedRules = this.getValidRules().stream()
             .filter(rule -> StringUtils.isEmpty(rule.getAppid()) || appid.equals(rule.getAppid())) // 检测是否是对应公众号的规则，如果appid为空则为通用规则
             .filter(rule -> null == rule.getEffectTimeStart() || rule.getEffectTimeStart().toLocalTime().isBefore(now))// 检测是否在有效时段，effectTimeStart为null则一直有效
