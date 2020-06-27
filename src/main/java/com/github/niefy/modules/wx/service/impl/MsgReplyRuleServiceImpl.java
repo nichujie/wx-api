@@ -113,6 +113,8 @@ public class MsgReplyRuleServiceImpl extends ServiceImpl<MsgReplyRuleMapper, Msg
             .filter(rule -> isMatch(exactMatch || rule.isExactMatch(), rule.getMatchValue().split(","), keywords)) //检测是否符合匹配规则
             .collect(Collectors.toList());
 
+        if (matchedRules.isEmpty()) return matchedRules;
+
         // 添加全局规则
         matchedRules.addAll(this.getValidGlobalRules().stream()
             .filter(rule -> StringUtils.isEmpty(rule.getAppid()) || appid.equals(rule.getAppid())) // 检测是否是对应公众号的规则，如果appid为空则为通用规则
