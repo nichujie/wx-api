@@ -66,7 +66,7 @@ public class MsgReplyRuleServiceImpl extends ServiceImpl<MsgReplyRuleMapper, Msg
     }
 
     /**
-     * 获取当前时段内所有有效的回复规则
+     * 获取当前时段内所有有效的（非全局）回复规则
      *
      * @return
      */
@@ -107,13 +107,6 @@ public class MsgReplyRuleServiceImpl extends ServiceImpl<MsgReplyRuleMapper, Msg
     public List<MsgReplyRule> getMatchedRules(String appid, boolean exactMatch, String keywords) {
         LocalTime now = LocalTime.now();
 
-        if (keywords.equals("subscribe")) {
-            // TODO: 优化多公众号逻辑
-            return msgReplyRuleMapper.selectList(
-                new QueryWrapper<MsgReplyRule>()
-                    .eq("match_value", "subscribe")
-                    .orderByDesc("priority"));
-        }
 
         List<MsgReplyRule> matchedRules = this.getValidRules().stream()
             .filter(rule -> StringUtils.isEmpty(rule.getAppid()) || appid.equals(rule.getAppid())) // 检测是否是对应公众号的规则，如果appid为空则为通用规则
