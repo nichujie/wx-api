@@ -78,7 +78,7 @@ public class MsgReplyRuleServiceImpl extends ServiceImpl<MsgReplyRuleMapper, Msg
                 .eq("global_rule", 0)
                 .isNotNull("match_value")
                 .ne("match_value", "")
-                .orderByDesc("priority"));
+                .orderByAsc("priority"));
     }
 
     /**
@@ -92,7 +92,7 @@ public class MsgReplyRuleServiceImpl extends ServiceImpl<MsgReplyRuleMapper, Msg
             new QueryWrapper<MsgReplyRule>()
                 .eq("status", 1)
                 .eq("global_rule", 1)
-                .orderByDesc("priority"));
+                .orderByAsc("priority"));
     }
 
     /**
