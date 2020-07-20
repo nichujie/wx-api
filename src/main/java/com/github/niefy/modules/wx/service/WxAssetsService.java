@@ -70,4 +70,12 @@ public interface WxAssetsService {
      * @throws WxErrorException
      */
     boolean materialDelete(String mediaId)throws WxErrorException;
+
+    /**
+     * 强制清除所有缓存
+     *
+     * @return
+     * @throws WxErrorException
+     */
+    boolean clearCache()throws WxErrorException;
 }

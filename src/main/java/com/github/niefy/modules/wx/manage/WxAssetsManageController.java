@@ -161,4 +161,18 @@ public class WxAssetsManageController {
         return R.ok().put(res);
     }
 
+    /**
+     * 强制清除所有缓存
+     *
+     * @return
+     * @throws WxErrorException
+     */
+    @PostMapping("/clearCache")
+    @RequiresPermissions("wx:wxassets:list")
+    public R clearCache(@CookieValue String appid) throws WxErrorException {
+        wxMpService.switchoverTo(appid);
+        boolean res = wxAssetsService.clearCache();
+        return R.ok().put(res);
+    }
+
 }

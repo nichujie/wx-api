@@ -103,4 +103,11 @@ public class WxAssetsServiceImpl implements WxAssetsService {
         log.info("删除素材，mediaId={}",mediaId);
         return wxMpService.getMaterialService().materialDelete(mediaId);
     }
+
+    @Override
+    @CacheEvict(allEntries = true)
+    public boolean clearCache() throws WxErrorException {
+        log.info("清除所有缓存...");
+        return true;
+    }
 }
